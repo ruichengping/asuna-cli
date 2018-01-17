@@ -19,8 +19,6 @@
     "url": "https://github.com/ruichengping/asuna-cli/issues"
   },
   "devDependencies": {
-    "chalk": "^2.3.0",
-    "commander": "^2.13.0"
   },
   "dependencies": {
     "chalk": "^2.3.0",
