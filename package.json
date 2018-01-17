@@ -1,0 +1,38 @@
+{
+  "name": "asuna-cli",
+  "version": "0.0.1",
+  "description": "a kind of  buildTool for react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "asuna": "bin/asuna"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruichengping/Asuna.git"
+  },
+  "author": "wuming",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruichengping/Asuna/issues"
+  },
+  "homepage": "https://github.com/ruichengping/Asuna#readme",
+  "devDependencies": {
+    "chalk": "^2.3.0",
+    "commander": "^2.13.0"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "commander": "^2.13.0",
+    "download-git-repo": "^1.0.2",
+    "inquirer": "^5.0.0",
+    "request": "^2.83.0",
+    "semver": "^5.5.0",
+    "user-home": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
