@@ -11,14 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ruichengping/Asuna.git"
+    "url": "git+https://github.com/ruichengping/asuna-cli.git"
   },
   "author": "wuming",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ruichengping/Asuna/issues"
+    "url": "https://github.com/ruichengping/asuna-cli/issues"
   },
-  "homepage": "https://github.com/ruichengping/Asuna#readme",
   "devDependencies": {
     "chalk": "^2.3.0",
     "commander": "^2.13.0"
