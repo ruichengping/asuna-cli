@@ -18,14 +18,15 @@
   "bugs": {
     "url": "https://github.com/ruichengping/asuna-cli/issues"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
     "download-git-repo": "^1.0.2",
     "inquirer": "^5.0.0",
+    "ora": "^2.0.0",
     "request": "^2.83.0",
+    "rimraf": "^2.6.2",
     "semver": "^5.5.0",
     "user-home": "^2.0.0"
   },
