@@ -1,22 +1,22 @@
-const request = require('request');
-const chalk = require('chalk');
-const logger = require('../lib/logger');
+const request = require('request')
+const chalk = require('chalk')
+const logger = require('../lib/logger')
 
 request({
     url: 'https://ruichengping.github.io/config/asuna-cli-template.json'
 }, (err, res, body) => {
-    if (err) logger.error(err);
-    const tempalteList=JSON.parse(body);
+    if (err) logger.error(err)
+    const tempalteList=JSON.parse(body)
     if(Array.isArray(tempalteList)){
         tempalteList.forEach(template => {
             console.log(
                 '  ' + chalk.yellow('★') +
                 '  ' + chalk.blue(template.name) +
                 ' - ' + template.description
-            );
-        });
+            )
+        })
     }else{
-        logger.error("template info is error");
+       logger.error("Sorry,official template info is error,cannot list supported template.")
     }
    
-});
+})
