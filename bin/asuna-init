@@ -11,6 +11,7 @@ const inquirer = require('inquirer')
 const download = require('download-git-repo')
 const logger = require('../lib/logger')
 const checkVersion = require('../lib/check-version')
+const templatePath=require('../lib/template-path')
 const generate = require('../lib/generate')
 
 
@@ -98,8 +99,9 @@ function run() {
   checkVersion(() => {
     if (!hasSlash) {
       // 使用官方模板
-      const officialTemplate = 'asuna-templates/' + template
-      downloadAndGenerate(officialTemplate)
+      templatePath.getOriginTemplatePath(template,(officialTemplate)=>{
+        downloadAndGenerate(officialTemplate)
+      })
     } else {
       // 不使用官方模板
       downloadAndGenerate(template)
