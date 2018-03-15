@@ -25,6 +25,7 @@
     "download-git-repo": "^1.0.2",
     "inquirer": "^5.0.0",
     "ora": "^2.0.0",
+    "read-metadata": "^1.0.0",
     "request": "^2.83.0",
     "rimraf": "^2.6.2",
     "semver": "^5.5.0",
