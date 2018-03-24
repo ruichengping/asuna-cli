@@ -15,11 +15,12 @@ const templatePath=require('../lib/template-path')
 const generate = require('../lib/generate')
 
 
-
+/**
+ * Usage
+ */
 
 program
   .usage('<template-name> [project-name]')
-  .option('-c, --clone', 'use git clone')
   .parse(process.argv)
 
 
@@ -50,31 +51,29 @@ help()
  * Settings.
  */
 let template = program.args[0]
-const hasSlash = template.indexOf('/') > -1 //true-采用自定义远程git仓库的模板   false-采用默认的git仓库模板
-const rawName = program.args[1] //输入的项目名称
-const inPlace = !rawName || rawName === '.' //是否设置了项目名称  true-未设置  false-已设置
-const name = inPlace ? path.relative('../', process.cwd()) : rawName //最终的项目名称  true-采用当前文件夹名称  false-采用设置的项目名称
-const to = path.resolve(rawName || '.') //生成的项目所在路径
-const clone = program.clone || false //是否采用git远程仓库的地址获取模板
+const hasSlash = template.indexOf('/') > -1
+const rawName = program.args[1]
+const inPlace = !rawName || rawName === '.'
+const name = inPlace ? path.relative('../', process.cwd()) : rawName
+const to = path.resolve(rawName || '.')
+const clone = program.clone || false
 const tmp = path.join(home, '.asuna-templates', template.replace(/[\/:]/g, '-'))
 
 
 
 
 
-//start-纯属为了显示的好看一些 
+
 
 console.log()
 process.on('exit', () => {
   console.log()
 })
 
-//end-纯属为了显示的好看一些
 
 
-//判断目标路径是否存在
-if (exists(to)) {
-  //存在-询问是否覆盖已存在的目标路径的内容
+
+if (inPlace || exists(to)) {
   inquirer.prompt([{
     type: 'confirm',
     message: inPlace ?
@@ -86,7 +85,6 @@ if (exists(to)) {
     }
   }).catch(logger.error)
 } else {
-  //不存在-询问是否覆盖已存在的目标路径的内容
   run();
 }
 
@@ -118,9 +116,7 @@ function downloadAndGenerate(template) {
   spinner.start()
   // 如果本地存在相同的模板  删除本地存在的模板重新下载
   if (exists(tmp)) rm(tmp)
-  download(template, tmp, {
-    clone
-  }, err => {
+  download(template, tmp, false, err => {
     spinner.stop()
     if (err) logger.error('Failed to download repo ' + template + ': ' + err.message.trim())
     generate(name, tmp, to, err => {

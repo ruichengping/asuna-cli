@@ -4,7 +4,7 @@
   "description": "a kind of  buildTool for react",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/test.js"
   },
   "bin": {
     "asuna": "bin/asuna"
@@ -18,15 +18,20 @@
   "bugs": {
     "url": "https://github.com/ruichengping/asuna-cli/issues"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2"
+  },
   "dependencies": {
     "async": "^2.6.0",
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
+    "consolidate": "^0.15.1",
     "download-git-repo": "^1.0.2",
     "handlebars": "^4.0.11",
     "inquirer": "^5.1.0",
     "metalsmith": "^2.3.0",
+    "minimatch": "^3.0.4",
+    "multimatch": "^2.1.0",
     "ora": "^2.0.0",
     "read-metadata": "^1.0.0",
     "request": "^2.83.0",
