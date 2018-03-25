@@ -2,7 +2,7 @@
 
 ## Install
 ```
-npm install asuna -g
+npm install asuna-cli -g
 ```
 ## Usage
 
@@ -10,7 +10,7 @@ npm install asuna -g
 ```
 asuna init  <template-name>  <project-name>
 ```
-### Show offical template
+### Show Offical Template
 ```
 asuna list
 ```
