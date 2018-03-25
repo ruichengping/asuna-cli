@@ -10,5 +10,3 @@ asuna init  <template-name>  <project-name>
 ```
 asuna list
 ```
-## License
-MIT

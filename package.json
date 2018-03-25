@@ -1,8 +1,7 @@
 {
   "name": "asuna-cli",
   "version": "0.0.1",
-  "description": "a kind of  buildTool for react",
-  "main": "index.js",
+  "description": "cli for rapid web development",
   "scripts": {
     "test": "mocha test/test.js"
   },
