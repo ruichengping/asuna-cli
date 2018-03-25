@@ -1,5 +1,9 @@
 # asuna-cli
 
+## Install
+```
+npm install asuna -g
+```
 ## Usage
 
 ### Build Peoject
