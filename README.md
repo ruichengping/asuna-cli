@@ -1,1 +1,14 @@
-# Web项目快速构建工具
+# asuna-cli
+
+## Usage
+
+### Build Peoject
+```
+asuna init  <template-name>  <project-name>
+```
+### Show offical template
+```
+asuna list
+```
+## License
+MIT
