@@ -1,44 +1,31 @@
 {
-  "name": "asuna-cli",
+  "name": "roo-bid",
   "version": "0.0.1",
-  "description": "cli for rapid web development",
-  "scripts": {
-    "test": "mocha test/test.js"
-  },
+  "main": "index.js",
+  "repository": "git@github.com:dtux-kangaroo/roo-bid.git",
+  "author": "长卿 <changqing@dtstack.com>",
+  "license": "MIT",
   "bin": {
-    "asuna": "bin/asuna"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ruichengping/asuna-cli.git"
-  },
-  "author": "wuming",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ruichengping/asuna-cli/issues"
-  },
-  "devDependencies": {
-    "chai": "^4.1.2"
+    "roo-bid": "bin/roo-bid"
   },
   "dependencies": {
-    "async": "^2.6.0",
-    "chalk": "^2.3.0",
-    "commander": "^2.13.0",
+    "async": "^2.6.1",
+    "chalk": "^2.4.1",
+    "commander": "^2.16.0",
     "consolidate": "^0.15.1",
     "download-git-repo": "^1.0.2",
     "handlebars": "^4.0.11",
-    "inquirer": "^5.1.0",
+    "inquirer": "^6.0.0",
     "metalsmith": "^2.3.0",
-    "minimatch": "^3.0.4",
-    "multimatch": "^2.1.0",
-    "ora": "^2.0.0",
-    "read-metadata": "^1.0.0",
-    "request": "^2.83.0",
+    "ora": "^3.0.0",
+    "request": "^2.87.0",
     "rimraf": "^2.6.2",
     "semver": "^5.5.0",
     "user-home": "^2.0.0"
   },
-  "engines": {
-    "node": ">=6.0.0"
-  }
+  "files": [
+    "bin",
+    "lib",
+    "README.md"
+  ]
 }
