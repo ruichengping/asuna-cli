@@ -1,6 +1,11 @@
 # asuna-cli 
 前端项目构建工具
-## asuna create
+## Install
+```
+  npm i asuna-cli -g
+```
+## Usage
+### asuna create
 构建流程：
 1. 拉取远程模板信息
 2. 选择你需要的远程模板
@@ -10,7 +15,7 @@
 6. 回答四个问题：a)项目名称 b)项目版本 c)项目描述 d)项目
 7. 进入构建过程
 8. 构建完成，开始你的coding之旅
-## asuna new
+### asuna new
 - -c或者--config 指定asuna.config.js
 - -d或者--dest 指定模板生成路径
 ```
