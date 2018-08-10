@@ -21,7 +21,7 @@ checkVersion(()=>{
  */
 function Main(){
   //本地模板存放仓库
-  const tmpRepo=path.resolve(userHome,'.roo-templates')
+  const tmpRepo=path.resolve(userHome,'.asuna-templates')
   //获取模板列表
   fetchTemplateList((templateList)=>{
     const choices=templateList.map(template=>{

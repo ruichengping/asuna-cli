@@ -1,12 +1,11 @@
 {
-  "name": "roo-bid",
+  "name": "asuna-cli",
   "version": "0.0.1",
-  "main": "index.js",
-  "repository": "git@github.com:dtux-kangaroo/roo-bid.git",
-  "author": "长卿 <changqing@dtstack.com>",
+  "repository": "git@github.com:ruichengping/asuna-cli.git",
+  "author": "芮程平 <819621056@qq.com>",
   "license": "MIT",
   "bin": {
-    "roo-bid": "bin/roo-bid"
+    "asuna": "bin/asuna"
   },
   "dependencies": {
     "async": "^2.6.1",

@@ -19,10 +19,10 @@ program
     console.log('  Examples:')
     console.log()
     console.log(chalk.gray('    # new a page'))
-    console.log('    $ roo-bid new page')
+    console.log('    $ asuna new page')
     console.log()
     console.log(chalk.gray('    # new a component'))
-    console.log('    $ roo-bid new component')
+    console.log('    $ asuna new component')
     console.log()
   })
   .on('exit',()=>{
@@ -50,22 +50,22 @@ checkVersion(()=>{
  * Main
  */
 function main(){
-  //获取roo.config.js的位置 
-  let configPath=path.join(process.cwd(),'roo.config.js')
+  //获取asuna.config.js的位置 
+  let configPath=path.join(process.cwd(),'asuna.config.js')
   if(program.config){
     configPath=path.isAbsolute(program.config)?program.config:path.join(process.cwd(),program.config)
   }
   //生成page或者component
-  const rooConfig=require(configPath)
+  const asunaConfig=require(configPath)
   const defaultDestination=transformIntoAbsolutePath(program.dest)
   inquirer.prompt([{
     type:'list',
     name:'newName',
-    choices:rooConfig.bid[`${newType}s`].map(item=>item.name),
+    choices:asunaConfig[`${newType}s`].map(item=>item.name),
     message:'Choose one page you need'  
   }]).then(answer=>{
     const {newName}=answer
-    const operand=rooConfig.bid[`${newType}s`].find(item=>item.name==newName)
+    const operand=asunaConfig[`${newType}s`].find(item=>item.name==newName)
     if(Array.isArray(operand.prompts)){
       inquirer.prompt(operand.prompts.concat({
         type:'input',
