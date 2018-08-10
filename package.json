@@ -1,6 +1,7 @@
 {
   "name": "asuna-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
+  "description": "前端构建工具",
   "repository": "git@github.com:ruichengping/asuna-cli.git",
   "author": "芮程平 <819621056@qq.com>",
   "license": "MIT",
