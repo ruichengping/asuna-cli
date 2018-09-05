@@ -71,12 +71,12 @@ function main(){
         type:'input',
         name:'name',
         message:`Input the name of ${newType}`,
-        defalut:operand.name
+        default:operand.name
       },defaultDestination?[]:{
         type:'input',
         name:'destination',
         message:`Input the destination of ${newType}`,
-        defalut:process.cwd()
+        default:process.cwd()
       })).then(answer=>{
         const {destination,name}=answer
         const finalDestination=path.join(destination?transformIntoAbsolutePath(destination):defaultDestination,name);
