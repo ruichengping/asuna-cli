@@ -74,7 +74,7 @@ function downloadAndGenerate(tmpRepo,tmpName,tmpUrl){
   inquirer.prompt([{
     type:'input',
     name:'branch',
-    message:'the name of branch you need',
+    message:`the name of branch you need in ${tmpName}`,
     default:'master'
   }]).then(answer=>{
     spinner.start()
