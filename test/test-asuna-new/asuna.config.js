@@ -4,7 +4,7 @@ module.exports={
     output:path.join(__dirname,'pages'),
     templates:[
       {
-        name:'love',
+        name:'Love',
         src:path.join(__dirname,'templates/pages/Love'),
         prompts:[
           {
@@ -20,7 +20,7 @@ module.exports={
     output:path.join(__dirname,'components'),
     templates:[
       {
-        name:'girl',
+        name:'Girl',
         src:path.join(__dirname,'templates/components/Girl'),
         prompts:[
           {
