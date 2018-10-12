@@ -38,7 +38,9 @@ if (program.args.length < 1) return program.help()
 const newType=program.args[0]
 
 if(newType!=='component'&&newType!=='page'){
-  console.log(`${chalk.red(`Do not support this type <${newType}>,please choose one between component and page`)}`)
+  console.log()
+  console.log(chalk.red(`Do not support this type <${newType}>,please choose one between component and page`))
+  console.log()  
   process.exit()
 } 
 //检测版本，并执行主函数
@@ -55,54 +57,74 @@ function main(){
   if(program.config){
     configPath=path.isAbsolute(program.config)?program.config:path.join(process.cwd(),program.config)
   }
-  //生成page或者component
-  const asunaConfig=require(configPath)
-  const defaultDestination=transformIntoAbsolutePath(program.dest)
-  inquirer.prompt([{
-    type:'list',
-    name:'newName',
-    choices:asunaConfig[`${newType}s`].map(item=>item.name),
-    message:'Choose one page you need'  
-  }]).then(answer=>{
-    const {newName}=answer
-    const operand=asunaConfig[`${newType}s`].find(item=>item.name==newName)
-    if(Array.isArray(operand.prompts)){
-      inquirer.prompt(operand.prompts.concat({
+  const asunaConfig = require(configPath)
+  const templates = asunaConfig[`${newType}`].templates
+  const defaultDest = asunaConfig[`${newType}`].output
+  //选择模板文件  
+  chooseedTemplate(templates,function (choosedTemplate) {
+    inquirer.prompt([{
         type:'input',
         name:'name',
-        message:`Input the name of ${newType}`,
-        default:operand.name
-      },defaultDestination?[]:{
-        type:'input',
-        name:'destination',
-        message:`Input the destination of ${newType}`,
-        default:process.cwd()
-      })).then(answer=>{
-        const {destination,name}=answer
-        const finalDestination=path.join(destination?transformIntoAbsolutePath(destination):defaultDestination,name);
-        const otherMetadata=answer;
+        message:`Input the name of new ${newType}`,
+        default:choosedTemplate.name
+    }].concat(choosedTemplate.prompts)).then((answers)=>{
+        //最终构建路径
+      const finalDestination=path.join(program.dest?transformIntoAbsolutePath(program.dest):defaultDest,answers.name);
         //判断生成目录下是否存在同名
-        if(exists(finalDestination)){
-          inquirer.prompt([{
-            type:'confirm',
-            name:'override',
-            message:`The ${newType} named ${name} exists!Override?`
-          }]).then(answer=>{
-            const {override} = answer
-            if(override){
-              rm(finalDestination)
-              newPageOrComponent(operand.path,finalDestination,otherMetadata)
-            }else{
-              process.exit()
-            }
-          })
-        }else{
-          newPageOrComponent(operand.path,finalDestination,otherMetadata)
-        }
-      })
-    }
+      if(exists(finalDestination)){
+        confirmOverride(newType,answers.name,function(override){
+          if(override){
+            rm(finalDestination)
+            newPageOrComponent(choosedTemplate.src,finalDestination,answers);
+          }else{
+              process.exit();
+          }
+        })
+      }else{
+        newPageOrComponent(choosedTemplate.src,finalDestination,answers);
+      }
+    })
   })
 }
+
+/**
+ * 
+ * @param templates
+ * @param callback
+ */
+function chooseedTemplate(templates,callback){
+  inquirer.prompt([{
+    type:'list',
+    name:'name',
+    choices:templates.map(template=>template.name),
+    message:`Choose one ${newType} you need`  
+  }]).then((answers)=>{
+    const {name} = answers
+    const choosedTemplate = templates.find(template=>template.name===name)
+    if(typeof callback === 'function'){
+      callback(choosedTemplate)
+    }
+  });
+}
+/**
+ * 
+ * @param newType 
+ * @param name 
+ * @param callback 
+ */
+function confirmOverride(newType,name,callback) {
+  inquirer.prompt([{
+      type:'confirm',
+      name:'override',
+      message:`The ${newType} named ${name} exists!Override?`
+  }]).then(answers=>{
+      const {override} = answers
+      if(typeof callback === 'function'){
+        callback(override)
+      }
+  })
+}
+
 /**
  * 
  * @param {String}source 
@@ -110,23 +132,28 @@ function main(){
  */
 function newPageOrComponent(source,destination,otherMetadata){
   const spinner = ora(`Newing ${newType}...`).start()
-  const metalsmith=Metalsmith(source)
-  //加入新的全局变量
-  Object.assign(metalsmith.metadata(),otherMetadata)
-  //使用中间件
-  metalsmith.use(renderTemplateFiles())
-  //最后生成
-  metalsmith
-  .source('.')
-  .destination(destination)
-  .clean(false)
-  .build(function(err) {      
+  try{
+    const metalsmith=Metalsmith(source)
+    //加入新的全局变量
+    Object.assign(metalsmith.metadata(),otherMetadata)
+    //使用中间件
+    metalsmith.use(renderTemplateFiles())
+    //最后生成
+    metalsmith
+    .source('.')
+    .destination(destination)
+    .clean(false)
+    .build(function(err) {
+        spinner.stop()
+        if (err) throw err
+        console.log()
+        console.log(chalk.green('New Successfully'))
+        console.log()
+        console.log(`${chalk.green('Please cd')} ${destination} ${chalk.green(`to check your ${newType}`)}`)
+        console.log()
+    })
+  }catch (err) {
     spinner.stop()
-    if (err) throw err
-    console.log()
-    console.log(chalk.green('New Successfully'))
-    console.log()
-    console.log((`${chalk.green('Please cd')} ${destination} ${chalk.green(`to check your ${newType}`)}`))
-    console.log()
-  })
+    console.log(err)
+  }
 }

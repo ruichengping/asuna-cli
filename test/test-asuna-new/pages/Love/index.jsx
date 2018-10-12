@@ -1,8 +1,7 @@
 import React from 'react'
 import Welcome from  './components/Welcome'
-class PageOne extends React.PureComponent{
+export default class Love extends React.PureComponent{
   render(){
-    return (<Welcome/>)
+    return (<Welcome name="Teacher Cang"/>)
   }
 }
-export default PageOne

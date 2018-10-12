@@ -1,9 +1,9 @@
 import React from 'react'
-export default class {{name}} extends React.PureComponent{
+export default class Girl extends React.PureComponent{
   render(){
     return (
       <div>
-        Hello,{{girl}}
+        Hello,Gem
       </div>
     )
   }
