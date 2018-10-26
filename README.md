@@ -16,7 +16,7 @@
 7. 进入构建过程
 8. 构建完成，开始你的coding之旅
 ### asuna new
-- -c或者--config 指定roo.config.js
+- -c或者--config asuna.config.js
 - -d或者--dest 指定模板生成路径
 ```
 asuna new page //新建一个页面
