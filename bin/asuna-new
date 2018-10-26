@@ -6,6 +6,7 @@ const chalk=require('chalk')
 const inquirer=require('inquirer')
 const Metalsmith=require('metalsmith')
 const ora=require('ora')
+const Handlebars=require('handlebars')
 const rm=require('rimraf').sync
 const checkVersion=require('../lib/check-version.js')
 const renderTemplateFiles=require('../lib/render-template-files')
@@ -60,6 +61,11 @@ function main(){
   const asunaConfig = require(configPath)
   const templates = asunaConfig[`${newType}`].templates
   const defaultDest = asunaConfig[`${newType}`].output
+  const helpers = asunaConfig.helpers
+  //注册helpers
+  helpers && Object.keys(helpers).map(key => {
+    Handlebars.registerHelper(key, helpers[key])
+  })
   //选择模板文件  
   chooseedTemplate(templates,function (choosedTemplate) {
     inquirer.prompt([{
