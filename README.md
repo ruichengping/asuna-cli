@@ -15,12 +15,12 @@
 6. 回答四个问题：a)项目名称 b)项目版本 c)项目描述 d)项目
 7. 进入构建过程
 8. 构建完成，开始你的coding之旅
-### roo-bid new
+### asuna new
 - -c或者--config 指定roo.config.js
 - -d或者--dest 指定模板生成路径
 ```
-roo-bid new page //新建一个页面
-roo-bid new component //新建一个组件
+asuna new page //新建一个页面
+asuna new component //新建一个组件
 ```
 **asuna.config.js配置示例：**
 ```
@@ -117,3 +117,8 @@ templates每一项配置中的prompts使用示例：
 ```
 {{content}}
 ```
+**项目实战：**
+
+asuna new page 和 asuna new component具体在项目中的使用可参考如下这个项目：
+
+[react-webpack-pc](https://github.com/ruichengping/react-webpack-pc)
